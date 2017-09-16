@@ -11,3 +11,14 @@ Find the product abc.
 """
 
 
+#for a in range(1000):
+#    print(str(a * a) + " this is for number " + str(a)) 
+#    if a * a > 1000:
+#        break
+
+for a in range(1,998):
+    for b in range(a,999):
+        for c in range(b,999):
+            print("a = %d, b = %d, c = %d" % (a, b, c))
+#        print(str(a) + " " + str(b))
+
