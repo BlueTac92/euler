@@ -9,27 +9,28 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 """
 
 palindrome = []
+status = False
 
-for x in range(999, 0, -1):
-    for y in range(999, 0, -1):
+def check_palindrome(pal):
+    pal = str(pal)
+    if pal[0] == pal[-1]:
+        if len(pal) > 2:
+            pal = pal[1:-1]
+            check_palindrome(pal)
+        elif len(pal) == 2:
+            global status
+            status = True
+            return(True)
+        else:
+            return(False)
+
+for x in range(999, 300, -1):
+    for y in range(999, 300, -1):
+        status = False
         z = x * y
-        z = str(z)
-        z_len = len(z)
-        try:
-            if z[0] == z[-1]:
-                if z[1] == z[-2]:
-                    if z[2] == z[-3]:
-                        palindrome.append(int(z))
-        except IndexError:
-            break
+        check_palindrome(z)
+        if status:
+            palindrome.append(z)
 
-w = 0
-for x in palindrome:
-    if x > w:
-        w = x
-
-print(w)
-"""
-print("The number is " + str(z) + " which is " + str(z_len) + " characters long")
-print("%i x %i = %i" % (x, y, int(z)))
-"""
+palindrome.sort()
+print(palindrome[-1])
